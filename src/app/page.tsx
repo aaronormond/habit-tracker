@@ -1,30 +1,8 @@
-"use client";
-
 import TrackingButton from "@/components/TrackingButton";
-import { useState } from "react";
 
 export default function Home() {
-  const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  async function motivate() {
-    setLoading(true);
-    try {
-      const res = await fetch("/api/ai", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ streak: 5 }),
-      });
-      const data = await res.json();
-      setMessage(data.message);
-    } catch {
-      setMessage("AI temporarily unavailable. Try again later.");
-    }
-    setLoading(false);
-  }
-
   return (
-    <section className="max-w-6xl mx-auto flex flex-col md:flex-row items-stretch bg-neutral-950 text-white overflow-hidden rounded-2xl">
+    <section className="max-w-6xl mx-auto flex flex-col md:flex-row items-stretch bg-neutral-950 text-white overflow-hidden">
       {/* LEFT SIDE — Image with overlay */}
       <div className="relative md:w-[45%] h-64 md:h-auto">
         <img

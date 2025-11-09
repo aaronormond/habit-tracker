@@ -23,7 +23,6 @@ export default function RootLayout({
         <Navbar />
         <main className="flex-1">{children}</main>
         <footer className="border-t border-neutral-800 text-center text-sm text-neutral-500 py-4">
-          Built with ❤️ using Next.js + Supabase
         </footer>
       </body>
     </html>
