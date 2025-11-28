@@ -5,7 +5,7 @@ export default function Navbar() {
     <header className="border-b border-neutral-800 bg-neutral-950">
       <div className="max-w-6xl mx-auto flex justify-between items-center px-10 py-6">
         <a href="/" className="text-2xl font-bold text-white tracking-tight">
-          Habit Hero
+          HabitHero
         </a>
         <TrackingButton />
       </div>
