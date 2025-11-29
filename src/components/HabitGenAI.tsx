@@ -6,16 +6,21 @@ export default function TrackingPage() {
   const [goal, setGoal] = useState("");
   const [suggestedHabits, setSuggestedHabits] = useState<string[]>([]);
 
-  const handleGenerateHabits = () => {
+  const handleGenerateHabits = async () => {
     if (!goal.trim()) return;
+    
+    try {
+      const res = await fetch("/api/gen-habits", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ goal }),
+      });
 
-    const habits = [
-      `Daily 10-min practice for "${goal}"`,
-      `Track progress on "${goal}"`,
-      `Set reminders for "${goal}"`,
-    ];
-
-    setSuggestedHabits(habits);
+      const data = await res.json();
+      setSuggestedHabits(data.habits || []);
+    } catch (err) {
+      console.error("Error generating habits:", err);
+    }
   };
 
   const handleAddHabit = (habit: string) => {
