@@ -7,3 +7,7 @@ body {
   color: white;
   font-family: system-ui, sans-serif;
 }
+
+a:hover {
+  text-decoration: underline;
+}
