@@ -1,14 +1,18 @@
-"use client";
+"use client"
 
 import { useState } from "react";
+import { Loader2 } from "lucide-react";
+import AddGoalButton from "./AddGoalButton";
 
 export default function TrackingPage() {
   const [goal, setGoal] = useState("");
   const [suggestedHabits, setSuggestedHabits] = useState<string[]>([]);
+  const [loading, setLoading] = useState(false);
 
   const handleGenerateHabits = async () => {
     if (!goal.trim()) return;
     
+    setLoading(true);
     try {
       const res = await fetch("/api/gen-habits", {
         method: "POST",
@@ -20,11 +24,9 @@ export default function TrackingPage() {
       setSuggestedHabits(data.habits || []);
     } catch (err) {
       console.error("Error generating habits:", err);
+    } finally {
+      setLoading(false);
     }
-  };
-
-  const handleAddHabit = (habit: string) => {
-    console.log("Add clicked for:", habit);
   };
 
   return (
@@ -53,16 +55,10 @@ export default function TrackingPage() {
 
         <button
           onClick={handleGenerateHabits}
-          className="
-            mx-auto
-            w-2/3 min-w-max
-            px-6 py-3
-            bg-emerald-600 hover:bg-emerald-500
-            rounded-xl text-white font-semibold
-            transition
-          "
+          disabled={loading}
+          className="mx-auto w-2/3 h-12 min-w-max px-6 py-3 rounded-xl text-white font-semibold transition bg-emerald-600 hover:bg-emerald-500"
         >
-          Generate Habits
+        {loading ? <Loader2 className="animate-spin w-5 h-5 mx-auto text-white" /> : "Generate Habits"}
         </button>
       </div>
 
@@ -79,18 +75,15 @@ export default function TrackingPage() {
                 key={idx}
                 className="flex items-center justify-between bg-neutral-700 p-3 rounded-lg"
               >
-                <span className="text-neutral-200">{habit}</span>
+                <span className="text-neutral-200">
+                  {loading ? (
+                    <Loader2 className="animate-spin w-5 h-5 mx-auto text-white" />
+                  ) : (
+                    habit
+                  )}
+                </span>
 
-                <button
-                  onClick={() => handleAddHabit(habit)}
-                  className="
-                    px-4 py-1.5 rounded-md font-medium
-                    bg-emerald-600 hover:bg-emerald-500
-                    transition text-white
-                  "
-                >
-                  Add
-                </button>
+                <AddGoalButton name={habit}/>
               </li>
             ))}
           </ul>
