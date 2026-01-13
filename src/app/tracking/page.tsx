@@ -3,8 +3,16 @@ import CurrentGoals from "../../components/CurrentGoals";
 import HabitGenAI from "@/components/HabitGenAI";
 
 export default function TrackingPage() {
+
   return (
-    <section className="flex flex-col max-w-6xl mx-auto px-10 gap-32">
+    <section className="flex flex-col max-w-6xl mx-auto px-10 gap-24">
+        {/* <section className="h-10">
+          <div className="p-5 w-full flex justify-center gap-2">
+            <a href="./dashbord">Dashboard</a>
+            <p>/</p>
+            <a href="./account">Account</a>
+          </div>
+        </section> */}
         <section className="mt-10">
           <HabitGenAI />
         </section>

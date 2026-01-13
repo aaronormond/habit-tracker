@@ -39,7 +39,7 @@ export default function CurrentGoals() {
           <h2 className="text-2xl font-semibold tracking-tight">{day}</h2>
           <p className="text-sm text-neutral-500 font-normal"> {timeLeft} left </p>
         </div>
-        <AddGoalButton /> {/* now handles adding itself */}
+        <AddGoalButton />
       </div>
 
       <ul ref={listRef} className="flex-1 min-h-0 max-h-72 space-y-4 overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-neutral-700/60 hover:scrollbar-thumb-emerald-600/60">

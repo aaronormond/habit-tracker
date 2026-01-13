@@ -27,7 +27,6 @@ export function updateGoalName(id: number, name: string) {
   listeners.forEach(fn => fn());
 }
 
-// hook to use the goals in a component
 export function useGoals() {
   const [state, setState] = useState(goals);
 
